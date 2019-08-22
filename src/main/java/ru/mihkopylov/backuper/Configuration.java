@@ -2,7 +2,6 @@ package ru.mihkopylov.backuper;
 
 import javax.validation.constraints.NotBlank;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -13,13 +12,21 @@ import org.springframework.validation.annotation.Validated;
 @ConfigurationProperties(prefix = "backuper")
 @Getter
 @Setter
-@ToString(exclude = "token")
+@ToString(exclude = {"diskToken", "dbUser", "dbPassword"})
 @Validated
 public class Configuration {
-    @NonNull
-    private String user;
-    @NonNull
-    private String token;
+    @NotBlank
+    private String dbUser;
+    @NotBlank
+    private String dbPassword;
+    @NotBlank
+    private String dbDatabase;
+    @NotBlank
+    private String dbDumpFile;
+    @NotBlank
+    private String diskUser;
+    @NotBlank
+    private String diskToken;
     @NotBlank
     private String diskPath;
 }
