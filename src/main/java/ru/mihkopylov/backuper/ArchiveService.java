@@ -24,6 +24,11 @@ public class ArchiveService {
             outputFile.closeArchiveEntry();
         }
         log.info( "compressed file {} is written", resultFile );
+        if (file.delete()) {
+            log.info( "original file {} deleted", file );
+        } else {
+            log.warn( "can't delete original file {}", file );
+        }
         return resultFile;
     }
 }
