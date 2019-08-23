@@ -10,15 +10,16 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class BackupService implements Runnable {
+public class BackupService {
     @NonNull
     private final Configuration configuration;
 
-    @Override
-    public void run() {
+    @NonNull
+    public File run() {
         log.info( "creating backup" );
         File backupFile = createBackup();
         log.info( "backup created in {}", backupFile );
+        return backupFile;
     }
 
     @NonNull

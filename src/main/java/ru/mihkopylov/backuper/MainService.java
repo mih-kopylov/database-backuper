@@ -1,5 +1,6 @@
 package ru.mihkopylov.backuper;
 
+import java.io.File;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -22,8 +23,8 @@ public class MainService implements ApplicationRunner {
     public void run( ApplicationArguments args ) {
         log.info( "main service started" );
         log.info( "configuration: {}", configuration.toString() );
-        backupService.run();
-        uploadService.run();
+        File backupFile = backupService.run();
+        uploadService.run(backupFile);
         log.info( "main service completed" );
     }
 }
