@@ -17,6 +17,8 @@ public class MainService implements ApplicationRunner {
     @NonNull
     private final BackupService backupService;
     @NonNull
+    private final ArchiveService archiveService;
+    @NonNull
     private final UploadService uploadService;
 
     @Override
@@ -24,7 +26,8 @@ public class MainService implements ApplicationRunner {
         log.info( "main service started" );
         log.info( "configuration: {}", configuration.toString() );
         File backupFile = backupService.run();
-        uploadService.run(backupFile);
+        File archiveBackupFile = archiveService.run( backupFile );
+        uploadService.run(archiveBackupFile);
         log.info( "main service completed" );
     }
 }
