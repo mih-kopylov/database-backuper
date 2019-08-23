@@ -1,6 +1,8 @@
 package ru.mihkopylov.backuper;
 
 import java.io.File;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.SneakyThrows;
@@ -25,13 +27,14 @@ public class BackupService {
     @NonNull
     @SneakyThrows
     private File createBackup() {
+        String resultFileName = DateTimeFormatter.ofPattern( "yyyy-MM-dd-HH-mm-ss'.sql'" ).format( ZonedDateTime.now() );
         String command = String.format( "mysqldump -u %s -p%s --databases %s -r %s", configuration.getDbUser(),
-                configuration.getDbPassword(), configuration.getDbDatabase(), configuration.getDbDumpFile() );
+                configuration.getDbPassword(), configuration.getDbDatabase(), resultFileName );
         int processExitCode = Runtime.getRuntime().exec( command ).waitFor();
         if (processExitCode != 0) {
             throw new RuntimeException( String.format( "backup process exited with %s code", processExitCode ) );
         }
-        File result = new File( configuration.getDbDumpFile() );
+        File result = new File( resultFileName );
         if (!result.exists()) {
             throw new RuntimeException( String.format( "backup file %s was not created", result ) );
         }

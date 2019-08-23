@@ -22,8 +22,6 @@ public class Configuration {
     @NotBlank
     private String dbDatabase;
     @NotBlank
-    private String dbDumpFile;
-    @NotBlank
     private String diskUser;
     @NotBlank
     private String diskToken;
