@@ -21,10 +21,10 @@ public class UploadService {
 
     @SneakyThrows
     public void run( @NonNull File file ) {
-        log.info( "uploading backup" );
+        log.info( "uploading backup file {}", file );
         RestClient restClient =
                 new RestClient( new Credentials( configuration.getDiskUser(), configuration.getDiskToken() ) );
-        log.info( "free space: {} Mb", getFreeSpace( restClient ) );
+        log.info( "free space on yandex disk: {} Mb", getFreeSpace( restClient ) );
         String uploadPath = configuration.getDiskPath() + "/" + file.getName();
         Link uploadLink = restClient.getUploadLink( uploadPath, true );
         restClient.uploadFile( uploadLink, false, file, new LoggingProgressListener() );
