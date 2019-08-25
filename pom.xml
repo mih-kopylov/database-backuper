@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.mihkopylov</groupId>
-    <artifactId>database-backuper</artifactId>
+    <artifactId>mysql-backuper</artifactId>
     <version>0.0.0-SNAPSHOT</version>
 
     <parent>
