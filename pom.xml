@@ -6,7 +6,7 @@
 
     <groupId>ru.mihkopylov</groupId>
     <artifactId>mysql-backuper</artifactId>
-    <version>0.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
